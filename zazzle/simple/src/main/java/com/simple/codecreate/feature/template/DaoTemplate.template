@@ -1,0 +1,9 @@
+package ~[packagedao];
+
+import com.standard.base.dao.BaseRepository;
+import ~[entityname];
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ~[entitySimpleName]Repository extends BaseRepository<~[entitySimpleName],~[ID]> {
+}

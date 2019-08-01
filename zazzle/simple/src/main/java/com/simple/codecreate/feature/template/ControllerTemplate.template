@@ -1,0 +1,12 @@
+package ~[packagecontroller];
+
+import com.standard.base.controller.BaseController;
+import ~[entityname];
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("~[entitySimpleNameFirstLower]")
+public class ~[entitySimpleName]Controller extends BaseController<~[entitySimpleName],~[ID]> {
+
+}

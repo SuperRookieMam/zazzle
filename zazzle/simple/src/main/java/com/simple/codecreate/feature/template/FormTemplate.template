@@ -1,0 +1,66 @@
+<template>
+  <div>
+    <el-form :model="FormData"
+                 :rules="rules"
+                 ref="FormData"
+                 label-width="100px"
+                 size="mini">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+         <el-tab-pane label="<lable>" name="<name>">
+          <for>
+           <el-row>
+             <el-col :span="12">
+                <el-form-item label="<lable>" prop="<property>">
+                   <el-input v-model="formData.<property>"/>
+                 </el-form-item>
+                </el-col>
+           </el-row>
+          </for>
+         </el-tab-pane>
+      </el-tabs>
+      <el-row>
+         <el-col :span="12">
+            <el-form-item>
+              <el-button type="primary" @click="submitForm('formData')">
+                保存
+              </el-button>
+              <el-button @click="resetForm('formData')">
+                取消
+              </el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
+    </el-form>
+  </div>
+</template>
+<script>
+  import { Component, Prop, Mixins } from 'vue-property-decorator'
+  import TableBase from '../../../plugins/TableBase'
+  import TestTable from './TestTalble'
+
+  @Component({
+    components: {
+      TestTable
+    }
+  })
+  export default class TestForm extends Mixins(TableBase) {
+    @Prop({ default: () => 'new' })
+    id
+    activeName = 'base'
+    controllerMapping = 'menuFunction'
+    rules = {
+          name: [
+            {required: true, message: '请输入活动名称', trigger: 'blur'},
+            {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+          ]
+        }
+    handleClick (tab, event) {
+       /* if (tab.name === 'formtest') {
+            this.$router.push({name: 'tt', params: {rowData: {id: 'new'}}})
+          } */
+    }
+    created () {
+     this.getFormData(this.controllerMapping, this.id)
+    }
+ }
+</script>

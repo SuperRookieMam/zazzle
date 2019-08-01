@@ -1,0 +1,92 @@
+<template>
+   <div>
+     <el-form ref="serchObj"
+              class="demo-form-inline"
+              size="mini"
+              label-width="80px">
+         <el-row>
+         <for>
+            <el-col :span="4">
+               <el-form-item label="<lable>">
+                 <el-input v-model="serchObj['<property>']" placeholder="请输入"/>
+               </el-form-item>
+            </el-col>
+         </for>
+            <el-col :span="4">
+              <el-button type="primary"
+                         size="mini"
+                         @click="filterByserchObj()">
+                            筛选
+                          </el-button>
+              <el-button type="primary"
+                         size="mini"
+                         @click="add('testForm')">
+                            新增
+                          </el-button>
+            </el-col>
+         </el-row>
+      </el-form>
+      <el-table :data="tableData"
+                style="width: 100%">
+        <for>
+         <el-table-column
+                 label="<lable>"
+                 prop="<property>"/>
+        </for>
+         <el-table-column label="操作" :min-width="60">
+                 <template slot-scope="scope">
+                   <el-button type="text" size="mini" @click="edit('testForm',scope.row)">编辑</el-button>
+                   <el-button type="text" size="mini" @click="deleteRow(controllerMapping,scope.row)">编辑</el-button>
+                 </template>
+         </el-table-column>
+      </el-table>
+      <el-pagination
+               @size-change="handleSizeChange"
+               @current-change="handleCurrentChange"
+               :current-page="params.pageNum"
+               :page-sizes="pageSizes"
+               :page-size="params.pageSize"
+               layout="total, sizes, prev, pager, next, jumper"
+               :total="totalPage"/>
+   </div>
+</template>
+<script>
+   import { Component, Mixins } from 'vue-property-decorator'
+   import TableBase from '../../../plugins/TableBase'
+
+  @Component
+  export default class TestTalbles extends Mixins(TableBase)  {
+
+    serchObj = {}
+
+    params = {
+        pageSize: 50,
+        pageNum: 1
+    }
+    pageSizes = [10, 20, 40, 80]
+
+    tableData = []
+
+    controllerMapping = ''
+
+    handleSizeChange (val) {
+     this.params.  = val
+      this.filterByserchObj()
+    }
+    handleCurrentChange (val) {
+      this.params.pageNum = val
+      this.filterByserchObj()
+    }
+    filterByserchObj () {
+          this.search('', this.serchObj, this.params, '').then(ele => {
+            if (ele.code === 0) {
+              this.tableData = ele.data.list
+              this.totalPage = ele.data.total
+            }
+          })
+        }
+    created () {
+      this.this.filterByserchObj()
+    }
+ }
+</script>

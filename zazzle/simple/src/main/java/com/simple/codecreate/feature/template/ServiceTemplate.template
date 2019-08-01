@@ -1,0 +1,8 @@
+package ~[packageService];
+
+import com.standard.base.service.BaseService;
+import ~[entityname];
+
+public interface ~[entitySimpleName]Service extends BaseService<~[entitySimpleName], ~[ID]> {
+
+}
