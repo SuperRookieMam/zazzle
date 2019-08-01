@@ -5,7 +5,6 @@ import com.simple.codecreate.feature.annotation.Description;
 import com.simple.codecreate.util.MyClassUtil;
 
 import java.lang.reflect.Field;
-import java.util.*;
 
 
 public class InitParmas {

@@ -1,7 +1,5 @@
 package com.simple.codecreate.feature.annotation;
 
-import java.lang.annotation.*;
-
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
