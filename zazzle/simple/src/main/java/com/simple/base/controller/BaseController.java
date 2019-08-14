@@ -33,6 +33,7 @@ public class BaseController<T extends BaseEntity,ID extends Serializable> {
         Object o=baseService.findListByParams(p);
         return ResultDto.success(o);
     }
+
     @GetMapping(value = "page",params = {"params"})
     @ResponseBody
     @ApiOperation(value="根据参数查询", notes="findPageParams")
@@ -72,6 +73,4 @@ public class BaseController<T extends BaseEntity,ID extends Serializable> {
     public ResultDto deletByParams(@RequestParam("dynameicParams") String dynamicParams){
         return ResultDto.success(baseService.deletByParam(ParamUtil.strToDynamicParam(dynamicParams)));
     }
-
-
 }

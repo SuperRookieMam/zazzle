@@ -47,7 +47,7 @@ public class SwaggerConfig {
                 .title("接口文档说名")
                 .description("系统对接访问示例：http://localhost:8091/myTestEntity1s/1")
                 .termsOfServiceUrl("http://localhost:8091/myTestEntity1s/1")
-                .contact("yhl")
+                .contact("zazzle")
                 .version("1.0")
                 .build();
     }

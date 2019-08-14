@@ -40,8 +40,8 @@ public class JpaConfigration {
     @Autowired
     @Qualifier("datasource")
     private DataSource dataSource;
-    //实体包的位置
-    private  String[] packagepath={"com.**.entity","com.**.model"};
+    //实体包的位置   跟model层息息相关 ， 加model文件夹这里就要加
+    private  String[] packagepath={"com.**.entity","com.**.model","com.**.log"};
 
 
 
@@ -98,4 +98,6 @@ public class JpaConfigration {
         txManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return txManager;
     }
+
+
 }

@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class BaseServiceImpl<T extends BaseEntity,ID extends Serializable> implements BaseService<T, ID> {
     @Autowired
-    private BaseRepository<T,ID> baseRepository;
+    public BaseRepository<T,ID> baseRepository;
     @Override
     public T  findById(ID id) {
         Optional<T> optional= baseRepository.findById(id);
@@ -42,8 +42,8 @@ public class BaseServiceImpl<T extends BaseEntity,ID extends Serializable> imple
             Predicate predicate = ParamUtil.analysisDynamicParam(dynamicParam,ele.builder,ele.root);
             if (!ObjectUtils.isEmpty(predicate))
                 ele.query.where(predicate);
-            ParamUtil.orderby(ele.builder,ele.query,ele.root, dynamicParam.getSort()==null?null: dynamicParam.getSort().toArray(new String[0]));
-            ParamUtil.groupBy(ele.query,ele.root,dynamicParam.getGroupby()==null?null:dynamicParam.getGroupby().toArray(new String[0]));
+                ParamUtil.orderby(ele.builder,ele.query,ele.root, dynamicParam.getSort()==null?null: dynamicParam.getSort().toArray(new String[0]));
+                ParamUtil.groupBy(ele.query,ele.root,dynamicParam.getGroupby()==null?null:dynamicParam.getGroupby().toArray(new String[0]));
             return predicate;
         });
         return  dynamicTypeSelect.getResult();
@@ -60,25 +60,24 @@ public class BaseServiceImpl<T extends BaseEntity,ID extends Serializable> imple
             if (!ObjectUtils.isEmpty(predicateCount))
                 ele.countQuery.where(predicateCount);
             JSONArray jsonArray = dynamicParam.getSort();
-            ParamUtil.orderby(ele.builder,ele.query,ele.root,jsonArray.toArray(new String[0]));
-            ParamUtil.groupBy(ele.query,ele.root,dynamicParam.getGroupby().toArray(new String[0]));
-            ParamUtil.groupBy(ele.countQuery,ele.countRoot,dynamicParam.getGroupby().toArray(new String[0]));
+            ParamUtil.orderby(ele.builder,ele.query,ele.root, jsonArray==null?null: jsonArray.toArray(new String[0]));
+            ParamUtil.groupBy(ele.query,ele.root,dynamicParam.getGroupby()==null?null:dynamicParam.getGroupby().toArray(new String[0]));
             return predicate;
         });
         return  DynamicPageTypeSelect.getResult();
     }
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager",rollbackFor = Exception.class)
     public T updateByEntity(T entity){
        return baseRepository.save(entity);
     }
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager",rollbackFor = Exception.class)
     public List<T> updateByEntitys(Iterable<T> iterable){
        return baseRepository.saveAll(iterable);
     }
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager",rollbackFor = Exception.class)
     public int updateByParams(DynamicParam dynamicParam){
         DynamicUpdate<T> dynamicUpdate = baseRepository.getDynamicUpdate();
         JSONObject jsonObject = dynamicParam.getUpdateFiled();
@@ -100,18 +99,18 @@ public class BaseServiceImpl<T extends BaseEntity,ID extends Serializable> imple
     }
 
     @Override
-    @Transactional( rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager", rollbackFor = Exception.class)
     public void deletById(ID id){
         baseRepository.deleteById(id);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager",rollbackFor = Exception.class)
     public void deletByEntitys(Iterable<T> entitys){
         baseRepository.deleteAll(entitys);
     }
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager",rollbackFor = Exception.class)
     public int deletByParam(DynamicParam dynamicParam){
         DynamicDelete<T> dynamicDelete = baseRepository.getDynamicDelete();
         dynamicDelete.dynamicBuild(ele -> {
@@ -122,13 +121,13 @@ public class BaseServiceImpl<T extends BaseEntity,ID extends Serializable> imple
         return dynamicDelete.getResult();
     }
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager",rollbackFor = Exception.class)
     public T insertByEntity(T entity){
         return baseRepository.save(entity);
     }
 
     @Override
-    @Transactional( rollbackFor = Exception.class)
+    @Transactional(value = "platformTransactionManager", rollbackFor = Exception.class)
     public List<T> insertByEntitys(Iterable<T> entitys){
         return baseRepository.saveAll(entitys);
     }

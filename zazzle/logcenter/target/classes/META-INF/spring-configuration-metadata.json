@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "elasticsearch",
+      "type": "com.test.example.config.ElasticSearchConfig",
+      "sourceType": "com.test.example.config.ElasticSearchConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "elasticsearch.cluster-name",
+      "type": "java.lang.String",
+      "sourceType": "com.test.example.config.ElasticSearchConfig"
+    },
+    {
+      "name": "elasticsearch.cluster-nodes",
+      "type": "java.lang.String",
+      "sourceType": "com.test.example.config.ElasticSearchConfig"
+    }
+  ],
+  "hints": []
+}

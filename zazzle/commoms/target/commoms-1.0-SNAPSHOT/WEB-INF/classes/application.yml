@@ -1,0 +1,12 @@
+server:
+  port: 9001
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/yu?createDatabaseIfNotExist=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&verifyServerCertificate=false&autoReconnct=true&autoReconnectForPools=true&allowMultiQueries=true
+    username: root
+    password:
+    driverClassName: com.mysql.cj.jdbc.Driver
+  application:
+    name: test
+

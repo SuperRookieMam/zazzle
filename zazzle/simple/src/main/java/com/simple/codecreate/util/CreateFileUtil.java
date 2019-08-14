@@ -4,6 +4,7 @@ package com.simple.codecreate.util;
 import com.simple.codecreate.feature.annotation.IsCreate;
 import com.simple.codecreate.feature.replace.InitParmas;
 
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,6 +81,8 @@ public class CreateFileUtil {
     private static File getFileByPackage(String packageName){
         String classes =  CreateFileUtil.class.getClassLoader().getResource("").getPath();
         classes +=packageName.replaceAll("\\.", "/");
+        //分离model后新增代码
+        classes= classes.replaceFirst("commoms","model");
         File file =new File(classes);
         if (!file.exists()){
             throw  new RuntimeException("包名不存在");

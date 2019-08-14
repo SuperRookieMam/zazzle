@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.zazzle</groupId>
+        <artifactId>zazzle</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.zazzle</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>commoms</artifactId>
+    <packaging>war</packaging>
+
+
+    <!-- <distributionManagement>负责管理构件的发布
+    1、如果在发布时使用mvn deploy -P release 的命令，那么会自动使用0.1作为发布版本，那么根据maven处理snapshot和release的规则，由于版本号后不带-SNAPSHOT故当成是正式发布版本，会被发布到release仓库；
+    2、如果发布时使用mvn deploy命令，那么就会使用默认的版本号0.1-SNAPSHOT，此时maven会认为是快照版本，会自动发布到快照版本库。
+    -->
+    <distributionManagement>
+        <!--稳定版发布仓库地址-->
+        <repository>
+            <id>zazzle-releases</id>
+            <name>releases</name>
+            <url>http://localhost:7322/nexus/content/repositories/releases/</url>
+        </repository>
+        <!--快照版仓库地址-->
+        <snapshotRepository>
+            <id>zazzle-snapshots</id>
+            <name>snapshots</name>
+            <url>http://localhost:7322/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zazzle</groupId>
+            <artifactId>simple</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zazzle</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zazzle</groupId>
+            <artifactId>logstarter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

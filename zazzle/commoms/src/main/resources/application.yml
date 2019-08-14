@@ -1,0 +1,20 @@
+server:
+  port: 9001   #配置访问的端口
+  #servlet:
+    #context-path: /xxx　　#配置访问时的项目名
+spring:
+  #devtools:
+  #  livereload:
+  #    enabled: true #是否支持  浏览器自动刷新
+  #    port: 35729
+  #  restart:
+  #    enabled: true #是否支持热部署
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/yu?createDatabaseIfNotExist=true&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&verifyServerCertificate=false&autoReconnct=true&autoReconnectForPools=true&allowMultiQueries=true
+    username: root
+    password:
+    driverClassName: com.mysql.cj.jdbc.Driver
+  application:
+    name: commoms
+
