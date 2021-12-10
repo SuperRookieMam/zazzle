@@ -56,7 +56,7 @@
         <maven.deploy.version>2.7</maven.deploy.version>
         <maven.source.version>2.4</maven.source.version>
         <mysql-connection.version>5.1.35</mysql-connection.version>
-        <log4j.version>2.11.1</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <commons-io.version>2.6</commons-io.version>
     </properties>
 
